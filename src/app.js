@@ -1,5 +1,5 @@
 ﻿//var http = require('http');
-//var port = process.env.port || 1337;
+var port = process.env.port || 1337;
 
 var express = require('express');
 
@@ -14,9 +14,9 @@ app.get('/', function(req, res) {
 app.get('/channel/:name', function(req, res) {
     
     //TODO: add validation of channel name
-    var channelName = req.param.name;
-    
+    var channelName = req.params.name;
 
+    res.send('Channel: ' + channelName);
 });
 
-app.listen(3000);
+app.listen(port);
