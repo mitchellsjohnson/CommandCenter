@@ -2,6 +2,9 @@
 
 block extraHeader
   script(src="/javascripts/iframe.js")
-    
+  script.
+    currentView = !{JSON.stringify(view)}
+  script(src="/javascripts/rotate.js")
+  
 block content
-  iframe(id='frameContent', width='100%', height='768px', scrolling='no', frameborder='no', src= viewUrl)
+  iframe(id='frameContent', width='100%', height='768px', scrolling='no', frameborder='no', src= view.url)

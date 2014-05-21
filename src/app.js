@@ -65,7 +65,8 @@ app.all('/', site.index);
 
 app.get('/channel', channel.list);
 app.get('/channel/:name', channel.view);
+app.get('/channel/:name/emergency', channel.emergency);
 app.get('/channel/:name/:id', channel.getUrl);
-app.get('/channel/:name/:id/next', channel.next);
+app.get('/channel/:name/:priority/next', channel.next);
 
 app.listen(port);
