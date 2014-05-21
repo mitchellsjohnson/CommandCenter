@@ -31,8 +31,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="channel.js" />
+    <Compile Include="mysqlLib.js" />
+    <Compile Include="public\javascripts\iframe.js" />
+    <Compile Include="public\javascripts\rotate.js" />
+    <Compile Include="site.js" />
     <Content Include="package.json" />
+    <Content Include="public\stylesheets\style.css" />
     <Content Include="README.md" />
+    <Content Include="views\channel\list.jade" />
+    <Content Include="views\channel\view.jade" />
+    <Content Include="views\error.jade" />
+    <Content Include="views\index.jade" />
+    <Content Include="views\layout.jade" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="public\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\javascripts\" />
+    <Folder Include="public\stylesheets\" />
+    <Folder Include="views\" />
+    <Folder Include="views\channel\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
