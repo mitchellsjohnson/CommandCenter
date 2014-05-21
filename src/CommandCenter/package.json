@@ -1,0 +1,10 @@
+{
+  "name": "CommandCenter",
+  "version": "0.0.0",
+  "description": "CommandCenter",
+  "main": "server.js",
+  "author": {
+    "name": "mjohnson",
+    "email": ""
+  }
+}
