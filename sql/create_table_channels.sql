@@ -8,3 +8,8 @@ CREATE TABLE channels (
   updated TIMESTAMP,
   updated_by VARCHAR(100)
 );
+
+  
+  ALTER TABLE channels
+  ADD CONSTRAINT uc_channels UNIQUE (channel_cd);
+  

@@ -8,3 +8,5 @@ CREATE TABLE url_types (
   updated_by VARCHAR(100)
 );
 
+  ALTER TABLE url_types
+  ADD CONSTRAINT uc_url_type_cd UNIQUE (url_type_cd);
