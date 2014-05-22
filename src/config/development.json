@@ -4,8 +4,8 @@
 	},
 	"database": {
 		"host": "localhost",
-		"username": "root",
-		"password": "gatech2001",
+		"username": "commandcenter",
+		"password": "cc^2014",
 		"dbName": "commandcenter"
 	}
 }
