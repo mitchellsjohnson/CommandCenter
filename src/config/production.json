@@ -1,0 +1,11 @@
+﻿{
+    "node": {
+		"port": 9999
+	},
+	"database": {
+		"host": "localhost",
+		"username": "ccuser",
+		"password": "cc^2014",
+		"dbName": "commandcenter"
+	}
+}
