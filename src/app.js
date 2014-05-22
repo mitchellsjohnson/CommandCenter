@@ -4,6 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressBlocks = require('express-blocks');
 var CONFIG = require('nconf');
 var mysqlLib = require('./mysqlLib');
 
@@ -26,8 +27,9 @@ var site = require('./site');
 var channel = require('./channel');
 
 // view engine setup
+app.engine('.html', require('ejs').__express);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
 
 app.use(favicon());
 app.use(logger('dev'));
