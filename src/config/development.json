@@ -4,7 +4,7 @@
 	},
 	"database": {
 		"host": "localhost",
-		"username": "commandcenter",
+		"username": "ccuser",
 		"password": "cc^2014",
 		"dbName": "commandcenter"
 	}
