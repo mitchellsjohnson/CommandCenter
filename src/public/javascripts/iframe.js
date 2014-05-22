@@ -1,3 +1,3 @@
-﻿$('iframe').load(function() {
-        //TODO: height of frame
-    });
+﻿$( 'iframe' ).ready( function () {
+    $('iframe').height(window.innerHeight|| document.body.clientHeight );
+});

@@ -36,16 +36,18 @@
     <Compile Include="public\javascripts\iframe.js" />
     <Compile Include="public\javascripts\rotate.js" />
     <Compile Include="site.js" />
+    <Content Include="config\development.json" />
+    <Content Include="config\production.json" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\style.css" />
     <Content Include="README.md" />
-    <Content Include="views\channel\list.jade" />
-    <Content Include="views\channel\view.jade" />
-    <Content Include="views\error.jade" />
-    <Content Include="views\index.jade" />
-    <Content Include="views\layout.jade" />
+    <Content Include="views\channel\list.html" />
+    <Content Include="views\channel\view.html" />
+    <Content Include="views\error.html" />
+    <Content Include="views\index.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="config\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
