@@ -7,7 +7,7 @@
     <meta name="author" content="">
 
     <!-- styles -->
-    <link href="stylesheets/style.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="/javascripts/iframe.js"></script>
     <script type="text/javascript">
@@ -16,9 +16,7 @@
     </script>
     <script type="text/javascript" src="/javascripts/rotate.js"></script>
 </head>
-<body>
-    <div>
-        <iframe id="frameContent" style="width: 100%; height: 896px; border-width: 0; overflow: hidden;" src="<%= view.url %>"></iframe>
-    </div>
+<body style="overflow: hidden;">
+    <iframe id="frameContent" width="100%" height="100%" style="border-width: 0;" src="<%= view.url %>" ></iframe>
 </body>
 </html>
