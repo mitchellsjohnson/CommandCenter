@@ -1,4 +1,4 @@
-﻿var mysqlLib = require('./mysqlLib');
+﻿var mysqlLib = require('../mysqlLib');
 
 function getChannelCode(req) {
     //TODO: add validation that name exists
@@ -83,8 +83,8 @@ exports.view = function(req, res) {
                     duration: row.display_duration_sec
                 };
 
-                res.render('channel/view', {
-                    title: ' eVestment TV - ' + channelCode,
+                res.render('broadcasts/view', {
+                    page_title: ' eVestment TV - ' + channelCode,
                     view: viewData
                 });
             }
@@ -212,7 +212,7 @@ exports.list = function(req, res) {
                 channelList.push({ code: channelCode, description: description });
             }
 
-            res.render('channel/list', { title: "Channels", channels: channelList });
+            res.render('broadcasts/list', { page_title: "Channel Broadcasts", channels: channelList });
         });
     });
 };

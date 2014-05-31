@@ -1,0 +1,71 @@
+<%- include /../layouts/header.html %>
+
+        <div class="page-data">
+         <div class="data-btn">
+           <button onClick="addUrl();">+ Add</button>
+         </div>
+         <div class="data-table">
+            <table border="1"; cellpadding="7"; cellspacing="7"; width="100%"; table-layout: fixed;>
+             <colgroup>
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:20%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>URL ID</th>
+                    <th>URL String</th>
+                    <th>Description</th>
+                    <th>URL Type</th>
+		            <th>Created Date</th>
+                    <th>Created By</th>
+		            <th>Updated Date</th>
+                    <th>Updated By</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>         
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+                    <td><%=(i+1)%></td>
+                    <td><%=data[i].url_id%></td>
+                    <td display: inline-block; style="word-wrap: break-word; word-break: break-all;"><%=data[i].url_string%></td>
+                    <td><%=data[i].description%></td>
+                    <td><%=data[i].url_type_cd%></td>
+                    <td><%=data[i].created%></td>
+                    <td><%=data[i].created_by%></td>
+                    <td><%=data[i].updated%></td>
+                    <td><%=data[i].updated_by%></td>
+                    <td>
+                        <a class="a-inside edit" href="../urls/<%=data[i].url_id%>">Edit</a>
+                       
+                        <a class="a-inside delete" href="../urls/<%=data[i].url_id%>/delete">Delete</a>
+                       
+                    </td>
+                </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="3">No urls</td>
+                 </tr>
+            <% } %>
+                
+                              
+              </tbody>    
+            </table>
+         </div>
+        </div>
+    
+<%- include /../layouts/footer.html%>

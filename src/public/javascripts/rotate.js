@@ -10,7 +10,7 @@ function checkForNewView() {
         checkForNextView();
     } else {
         //standard check for emergency
-        var emergencyUrl = '/channel/' + currentView.channelCode + '/emergency';
+        var emergencyUrl = '/broadcasts/' + currentView.channelCode + '/emergency';
         $.get(emergencyUrl, function(data) {
             if (!data && currentView.priority == 0) {
                 checkForNextView();
@@ -24,7 +24,7 @@ function checkForNewView() {
 
 function checkForNextView() {
     //call the next view url
-    var nextUrl = '/channel/' + currentView.channelCode + '/' + currentView.priority + '/next';
+    var nextUrl = '/broadcasts/' + currentView.channelCode + '/' + currentView.priority + '/next';
     $.get(nextUrl, function(data) {
         if (!data) {
             alert("error retrieving view");

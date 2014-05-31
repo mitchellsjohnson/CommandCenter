@@ -1,0 +1,44 @@
+<%- include /../layouts/header.html %>
+
+        <div class="page-data">
+            
+            <form method="post" action="/channels_urls/<%=data[0].channel_id%>">
+                <table cellpadding="11">
+                <tr>
+                    <td class="label">URL</td>
+                    <td display: inline-block; style="word-wrap: break-word; word-break: break-all;">:  
+                           <% if(data.length){ %>
+                              <select name="url_id" required>
+                               <option value="" selected>Select URL to Associate</option>  
+                                <%for(var i = 0;i < data.length;i++) { %>
+                               
+                                    <option value="<%=data[i].url_id%>" ><%=data[i].description%></option>
+                               <%}%>
+                              </select>
+                            <%}%>
+                        
+
+                    </td>
+                 </tr>
+                <tr>
+                    <td class="label">Priority</td><td>: <input type="number" name="priority" min="0" required></td>
+                 </tr>
+                <tr>
+                    <td class="label">Display for Seconds</td><td>: <input type="number" name="displayforseconds" min="1" required></td>
+                 </tr>
+                <tr>
+                    <td class="label">Mapped By</td><td>: <input type="text" name="mapped_by"  maxlength="100" required></td>
+                </tr>
+                 <tr>
+                    <td class="label"></td>
+                    <td>
+                        &nbsp; <input type="submit" name="submit" value="Save">
+                       <input type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelChannelUrlAdd(<%=data[0].channel_id%>)">
+                    </td>
+                 </tr>
+                </table>
+            </form>
+            
+        </div>
+        
+<%- include /../layouts/footer.html %>

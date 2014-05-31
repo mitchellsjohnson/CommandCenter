@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var expressBlocks = require('express-blocks');
 var CONFIG = require('nconf');
 var mysqlLib = require('./mysqlLib');
+var http = require('http');
 
 CONFIG.argv().env();
 
@@ -24,7 +25,10 @@ if (app.get('env') === 'production') {
 mysqlLib.configure(CONFIG.get('database'));
 
 var site = require('./site');
-var channel = require('./channel');
+var broadcasts = require('./controllers/broadcasts');
+var urls = require('./controllers/urls'); 
+var channels = require('./controllers/channels'); 
+var channels_urls = require('./controllers/channels_urls'); 
 
 // view engine setup
 app.engine('.html', require('ejs').__express);
@@ -73,12 +77,40 @@ module.exports = app;
 
 app.all('/', site.index);
 
-app.get('/channel', channel.list);
-app.get('/channel/:name', channel.view);
-app.get('/channel/:name/emergency', channel.emergency);
-app.get('/channel/:name/:id', channel.getUrl);
-app.get('/channel/:name/:priority/next', channel.next);
+//Main Broadcast Operations
+app.get('/broadcasts', broadcasts.list);
+app.get('/broadcasts/:name', broadcasts.view);
+app.get('/broadcasts/:name/emergency', broadcasts.emergency);
+app.get('/broadcasts/:name/:id', broadcasts.getUrl);
+app.get('/broadcasts/:name/:priority/next', broadcasts.next);
+
+
+//Channel Maintenance Operations
+app.get('/channels', channels.list);
+app.get('/channels/addform', channels.addform);
+app.post('/channels', channels.save);
+app.get('/channels/:id', channels.editform);
+app.post('/channels/:id', channels.save_edit);
+//todo-how to delete http from a button URL href???
+app.get('/channels/delete/:id', channels.delete);
+
+//URL Maintenance Operations
+app.get('/urls', urls.list);
+app.get('/urls/addform', urls.addform);
+app.post('/urls', urls.save);
+app.get('/urls/:id', urls.editform);
+app.post('/urls/:id', urls.save_edit);
+//todo-how to delete http from a button URL href???
+app.get('/urls/:id/delete', urls.delete);
+
+//Associate URLs to Channels Maintenance Operations
+app.get('/channels_urls/:channelid', channels_urls.list);
+app.get('/channels_urls/:channelid/addform', channels_urls.addform);
+app.post('/channels_urls/:channelid', channels_urls.save);
+app.get('/channels_urls/:channelid/urls/:urlid/delete', channels_urls.delete);
 
 var port = CONFIG.get('node').port || 1337;
 
-app.listen(port);
+http.createServer(app).listen(port, function(){
+  console.log('CommandCenter server listening on port ' + port);
+});

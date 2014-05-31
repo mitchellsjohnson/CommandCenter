@@ -1,0 +1,46 @@
+<%- include /../layouts/header.html %>
+
+        <div class="page-data">
+            
+            <form method="post" action="/channels/<%=data[0].channel_id%>">
+                <table cellpadding="11">
+
+                <tr>
+                    <td class="label">Channel Code</td><td>: <input type="text" name="channel_cd" value="<%=data[0].channel_cd%>" size="<%=data[0].channel_cd_length%>" maxlength="40" required></td>
+                 </tr>
+                <tr>
+                    <td class="label">Description</td><td>: <input type="text" name="description" value="<%=data[0].description%>" size="<%=data[0].description_length%>" maxlength="200" required></td>
+                 </tr>
+                 <tr>
+                     <td class="label">Active</td>
+                    <td>: 
+                    <select name="active" required>
+                     
+                 <% if(data[0].Active = 1){ %>
+                       <option value="1" selected>True</option>
+                        <option value="0" >False</option>
+                <% 
+                 } 
+                 else
+                 {%>
+                        <option value="1">True</option>
+                        <option value="0" selected>False</option>
+                <% }%>
+                </select></td>
+                    </tr>
+                <tr>
+                    <td class="label">Updated By</td><td>: <input type="text" name="updated_by"  maxlength="100" required></td>
+                 </tr>
+                 <tr>
+                    <td class="label"></td>
+                    <td>
+                        &nbsp; <input type="submit" name="submit" value="Save">
+                       <input type="button" name="cancel" value="Cancel" class="cancel" onClick="cancelChannelEdit()">
+                    </td>
+                 </tr>
+                </table>
+            </form>
+            
+        </div>
+        
+<%- include /../layouts/footer.html %>

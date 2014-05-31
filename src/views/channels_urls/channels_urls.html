@@ -1,0 +1,76 @@
+<%- include /../layouts/header.html %>
+
+        <div class="page-data">
+         <div class="data-btn">
+             <% if(data.length){ %>
+           <button onClick="addUrlToChannel(<%=data[0].channel_id%>);">+ Add</button>
+             <%}%>
+         </div>
+         <div class="data-table">
+            <table border="1"; cellpadding="7"; cellspacing="7"; width="100%"; table-layout: fixed;>
+             <colgroup>
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:25%">
+                 <col style="width:15%">
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:5%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>URL ID</th>
+                    <th>URL String</th>
+                    <th>Description</th>
+                    <th>URL Type</th>
+		            <th>URL Created Date</th>
+                    <th>URL Created By</th>
+		            <th>URL Mapping Created Date</th>
+                    <th>URL Mapped By</th>
+                    <th>Priority</th>
+                    <th>Display for Seconds</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>         
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                    <tr>
+                        <td><%=(i+1)%></td>
+                        <td><%=data[i].url_id%></td>
+                        <td display: inline-block; style="word-wrap: break-word; word-break: break-all;"><%=data[i].url_string%></td>
+                        <td><%=data[i].description%></td>
+                        <td><%=data[i].url_type_cd%></td>
+                        <td><%=data[i].url_created%></td>
+                        <td><%=data[i].url_created_by%></td>
+                        <td><%=data[i].url_mapping_created%></td>
+                        <td><%=data[i].url_mapped_by%></td>
+                        <td align="center"><%=data[i].priority%></td>
+                        <td align="center"><%=data[i].display_duration_sec%></td>
+                        <td align="center">
+                            <a class="a-inside delete" href="../channels_urls/<%=data[i].channel_id%>/urls/<%=data[i].url_id%>/delete">Remove</a>  
+                        </td>
+                    </tr>
+               <% }
+ 
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="3">No Urls Mapped</td>
+                 </tr>
+            <% } %>
+                
+                              
+              </tbody>    
+            </table>
+         </div>
+        </div>
+    
+<%- include /../layouts/footer.html%>

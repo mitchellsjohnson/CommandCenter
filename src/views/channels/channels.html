@@ -1,0 +1,74 @@
+<%- include /../layouts/header.html %>
+
+        <div class="page-data">
+         <div class="data-btn">
+           <button onClick="addChannel();">+ Add</button>
+         </div>
+         <div class="data-table">
+            <table border="1"; cellpadding="7"; cellspacing="7"; width="100%"; table-layout: fixed;>
+             <colgroup>
+                 <col style="width:5%">
+                 <col style="width:5%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:10%">
+                 <col style="width:15%">
+                 <col style="width:15%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Channel ID</th>
+                    <th>Channel Code</th>
+                    <th>Description</th>
+		            <th>Created Date</th>
+                    <th>Created By</th>
+		            <th>Updated Date</th>
+                    <th>Updated By</th>
+                    <th>Action</th>
+                    <th>Content Editor</th>
+                </tr>
+                </thead>
+                <tbody>         
+                <% if(data.length){ 
+                                
+                 for(var i = 0;i < data.length;i++) { %>
+                 
+                <tr>
+                    <td><%=(i+1)%></td>
+                    <td><%=data[i].channel_id%></td>
+                    <td><%=data[i].channel_cd%></td>
+                    <td><%=data[i].description%></td>
+                    <td><%=data[i].created%></td>
+                    <td><%=data[i].created_by%></td>
+                    <td><%=data[i].updated%></td>
+                    <td><%=data[i].updated_by%></td>
+                    <td align="center">
+                        <a class="a-inside edit" href="../channels/<%=data[i].channel_id%>">Edit</a>
+                       
+                        <a class="a-inside delete" href="../channels/delete/<%=data[i].channel_id%>">Delete</a>
+                       
+                    </td>
+                    <td align="center">
+                        <a class="a-inside content" href="../channels_urls/<%=data[i].channel_id%>">Assign URLs</a>
+                       
+                    </td>
+                </tr>
+            <% }
+            
+             }else{ %>
+                 <tr>
+                    <td colspan="3">No channels</td>
+                 </tr>
+            <% } %>
+                
+                              
+              </tbody>    
+            </table>
+         </div>
+        </div>
+    
+<%- include /../layouts/footer.html%>
