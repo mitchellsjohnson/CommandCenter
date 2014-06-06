@@ -1,4 +1,12 @@
 var mysqlLib = require('../mysqlLib');
+
+
+
+exports.display_ryg  = function(req, res){
+    
+  res.render('urls/custom/ryg_build_alert',{page_title:"Alert - CommandCenter"});
+};
+
 /*
  * GET urls listing.
  */
@@ -148,12 +156,13 @@ exports.delete = function(req,res){
             
              if(err)
                  console.log("Error deleting : %s ",err );
-            console.log(sql);
+      
              res.redirect('/urls');
              
         });
         
      });
 };
+
 
 

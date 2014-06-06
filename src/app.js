@@ -7,7 +7,9 @@ var bodyParser = require('body-parser');
 var expressBlocks = require('express-blocks');
 var CONFIG = require('nconf');
 var mysqlLib = require('./mysqlLib');
-var http = require('http');
+var cluster = require("cluster");
+var http = require("http");
+var numCPUs = require("os").cpus().length;
 
 CONFIG.argv().env();
 
@@ -21,7 +23,7 @@ if (app.get('env') === 'production') {
     CONFIG.file('config/development.json');
 }
 
-//configure the mysql library
+//configure the mysql libraryy
 mysqlLib.configure(CONFIG.get('database'));
 
 var site = require('./site');
@@ -100,8 +102,9 @@ app.get('/urls/addform', urls.addform);
 app.post('/urls', urls.save);
 app.get('/urls/:id', urls.editform);
 app.post('/urls/:id', urls.save_edit);
-//todo-how to delete http from a button URL href???
 app.get('/urls/:id/delete', urls.delete);
+
+
 
 //Associate URLs to Channels Maintenance Operations
 app.get('/channels_urls/:channelid', channels_urls.list);
@@ -109,8 +112,19 @@ app.get('/channels_urls/:channelid/addform', channels_urls.addform);
 app.post('/channels_urls/:channelid', channels_urls.save);
 app.get('/channels_urls/:channelid/urls/:urlid/delete', channels_urls.delete);
 
+
 var port = CONFIG.get('node').port || 1337;
 
-http.createServer(app).listen(port, function(){
-  console.log('CommandCenter server listening on port ' + port);
-});
+if (cluster.isMaster) {
+  for (var i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", function(worker, code, signal) {
+    cluster.fork();
+  });
+} else {
+    http.createServer(app).listen(port, function(){
+    console.log('CommandCenter server listening on port ' + port);
+    });
+}

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CommandCenter Alert</title>
+	<link href="/stylesheets/style.css" rel="stylesheet">
+</head>
+<% if(data.length){ 
+    
+        if (data[i].color == "Red"){%>
+            <body id="body_red_alert">
+        <%}else if (data[i].color == "Yellow"){%>
+            <body id="body_yellow_alert">
+         <%}else {%>
+            <body id="body_green_alert">
+       <%}%>
+
+
+    <div id="wrapper">
+    <div class="page-container">
+        <h2>Environment    :   </h2><h3><%=data[i].environment%></h3>
+        <h2>Project Name   :   </h2><h3><%=data[i].project_name%></h3>
+        <h2>Build Timestamp:   </h2><h3><%=data[i].build_timestamp%></h3>
+        <h2>Errors         :   </h2><h3><%=data[i].errors%></h3>
+        <h2>Breakers       :   </h2><h3><%=data[i].breakers%></h3>
+<%}else{%>
+ <body>
+<%}%>           
+    </div>
+    </div>
+</body>
+</html>

@@ -2,9 +2,7 @@
 
         <div class="page-data">
          <div class="data-btn">
-             <% if(data.length){ %>
-           <button onClick="addUrlToChannel(<%=data[0].channel_id%>);">+ Add</button>
-             <%}%>
+           <button onClick="addUrlToChannel(<%=channel_id%>);">+ Add</button>
          </div>
          <div class="data-table">
             <table border="1"; cellpadding="7"; cellspacing="7"; width="100%"; table-layout: fixed;>
@@ -63,7 +61,7 @@
             
              }else{ %>
                  <tr>
-                    <td colspan="3">No Urls Mapped</td>
+                    <td colspan="12">No Urls Mapped</td>
                  </tr>
             <% } %>
                 

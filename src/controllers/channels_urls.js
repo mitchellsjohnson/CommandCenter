@@ -4,7 +4,7 @@ var mysqlLib = require('../mysqlLib');
  */
 
 exports.list = function(req, res){
-
+  var channel_id = req.params.channelid;
   mysqlLib.getConnection(function(err,connection){
         var sql = 'SELECT  c.channel_id, u.url_id, u.url_string, u.description,ut.url_type_cd, ' + 
                   '        date_format(u.created, \'%m/%d/%Y\') as url_created, u.created_by as url_created_by, ' +
@@ -14,16 +14,17 @@ exports.list = function(req, res){
                   '        inner join channel_url_assoc cua on cua.channel_id = c.channel_id ' +
                   '        inner join urls u on u.url_id = cua.url_id ' +
                   '        inner join url_types ut on ut.url_type_id = u.url_type_id ' +
-                  'WHERE u.active = 1 ' +
+                  'WHERE u.active = 1 and c.channel_id = ?' +
                   '        order by priority asc';
 
-        var query = connection.query(sql,function(err,rows)
+        console.log(sql);
+        var query = connection.query(sql,[channel_id],function(err,rows)
         {
             
             if(err)
                 console.log("Error Selecting : %s ",err );
      
-            res.render('channels_urls/channels_urls',{page_title:"Channel URL Mappings - CommandCenter",data:rows});
+            res.render('channels_urls/channels_urls',{page_title:"Channel URL Mappings - CommandCenter",data:rows, channel_id: channel_id});
                 
            
          });
