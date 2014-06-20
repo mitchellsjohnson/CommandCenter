@@ -1,5 +1,7 @@
 ﻿var remainingDuration = 0;
-
+if (currentView) {
+    remainingDuration = currentView.duration;
+}
 var tId = setInterval(checkForNewView, 10000);
 
 function checkForNewView() {

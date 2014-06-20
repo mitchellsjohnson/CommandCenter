@@ -31,8 +31,6 @@ exports.emergency = function(req, res) {
         connection.query(sql, function(sqlErr, rows, fields) {
             if (sqlErr) throw sqlErr;
 
-            connection.release();
-
             if (!rows || rows.length == 0) {
                 res.json(null);
             } else {
@@ -67,8 +65,6 @@ exports.view = function(req, res) {
         
         connection.query(sql, function(sqlErr, rows, fields) {
             if (sqlErr) throw sqlErr;
-
-            connection.release();
 
             if (!rows || rows.length == 0) {
                 res.json({});
@@ -109,8 +105,6 @@ exports.getUrl = function(req, res) {
         connection.query(sql, function(sqlErr, rows, fields) {
             if (sqlErr) throw sqlErr;
 
-            connection.release();
-            
             if (!rows || rows.length == 0) {
                 res.json({ });
             } else {
@@ -144,8 +138,6 @@ exports.next = function(req, res) {
         
         connection.query(sql, function(sqlErr, rows, fields) {
             if (sqlErr) throw sqlErr;
-
-            connection.release();
             
             if (!rows || rows.length == 0) {
                 res.json(null);
@@ -201,8 +193,6 @@ exports.list = function(req, res) {
         
         connection.query('select channel_cd, description from channels where active = 1', function(sqlErr, rows, fields) {
             if (sqlErr) throw sqlErr;
-
-            connection.release();
             
             var channelList = [];
             for (var i = 0; i < rows.length; i++) {

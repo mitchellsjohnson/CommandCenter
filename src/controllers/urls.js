@@ -20,7 +20,7 @@ exports.list = function(req, res){
                   'u.updated_by FROM urls u ' +
                   'inner join url_types ut on ut.url_type_id = u.url_type_id order by greatest(u.created, u.updated) desc ';
 
-        var query = connection.query(sql,function(err,rows)
+        connection.query(sql,function(err,rows)
         {
             
             if(err)
@@ -31,7 +31,7 @@ exports.list = function(req, res){
            
          });
          
-        // console.log(query.sql);
+   
     });
   
 };
@@ -42,7 +42,7 @@ exports.addform = function(req, res){
        
         var sql = 'SELECT url_type_id, url_type_cd FROM url_types';
 
-        var query = connection.query(sql,function(err,rows)
+        connection.query(sql,function(err,rows)
         {
             
             if(err)
@@ -53,7 +53,6 @@ exports.addform = function(req, res){
            
          });
          
-         //console.log(query.sql);
     });
   
 };
@@ -68,7 +67,7 @@ exports.editform = function(req, res){
         var sql = 'SELECT url_id, url_string, length(url_string) url_string_length, description, ' +
                   ' length(description) description_length, active ' +
                   ' FROM urls where url_id = ?'
-        var query = connection.query(sql,[id],function(err,rows)
+        connection.query(sql,[id],function(err,rows)
         {
             
             if(err)
@@ -79,7 +78,7 @@ exports.editform = function(req, res){
            
          });
          
-         //console.log(query.sql);
+       
     }); 
 };
 
@@ -100,7 +99,7 @@ exports.save = function(req,res){
         
         };
         var sql = 'INSERT INTO urls set ?';
-        var query = connection.query(sql,[data], function(err, rows)
+        connection.query(sql,[data], function(err, rows)
         {
   
           if (err)
@@ -110,8 +109,6 @@ exports.save = function(req,res){
           
         });
         
-       // console.log(query.sql); get raw query
-    
     });
 };
 
