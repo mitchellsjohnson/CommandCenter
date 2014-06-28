@@ -4,11 +4,12 @@
     <title>CommandCenter Alert</title>
 	<link href="/stylesheets/style.css" rel="stylesheet">
 </head>
-<% if(data.length){ 
-    
-        if (data[i].color == "Red"){%>
+ <% if(data.length){ 
+         var JSONData= JSON.parse(data[0].json_data);
+        
+         if (JSONData.color.toLowerCase() == "red"){%>
             <body id="body_red_alert">
-        <%}else if (data[i].color == "Yellow"){%>
+        <%}else if (JSONData.color.toLowerCase()  == "yellow"){%>
             <body id="body_yellow_alert">
          <%}else {%>
             <body id="body_green_alert">
@@ -17,12 +18,56 @@
 
     <div id="wrapper">
     <div class="page-container">
-        <h2>Environment    :   </h2><h3><%=data[i].environment%></h3>
-        <h2>Project Name   :   </h2><h3><%=data[i].project_name%></h3>
-        <h2>Build Timestamp:   </h2><h3><%=data[i].build_timestamp%></h3>
-        <h2>Errors         :   </h2><h3><%=data[i].errors%></h3>
-        <h2>Breakers       :   </h2><h3><%=data[i].breakers%></h3>
+        <div class="Table">
+            <div class="Row">
+                <div class="Cell">
+                    <h1>Build Timestamp:   </h1>
+                </div>
+                <div class="Cell">
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=JSONData.build_timestamp.trim()%></h2>
+                </div>
+            </div>
+            <div class="Row">
+                <div class="Cell">
+                    <h1>Project Name   :   </h1>
+                </div>
+                <div class="Cell">
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=JSONData.project_name.trim()%></h2>
+                </div>
+            </div>
+            <div class="Row">
+                <div class="Cell">
+                    <h1>Environment    :   </h1>
+                </div>
+                <div class="Cell">
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=JSONData.environment.trim()%></h2>
+                </div>
+            </div>
+            <div class="Row">
+                <div class="Cell">
+                    <h1>Errors         :   </h1>
+                </div>
+                <div class="Cell">
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=JSONData.errors.trim()%></h2>
+                </div>
+            </div>
+            <div class="Row">
+                <div class="Cell">
+                    <h1>Breakers       :   </h1>
+                </div>
+                <div class="Cell">
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=JSONData.breakers.trim()%></h2>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        
+        
+        
 <%}else{%>
+   
  <body>
 <%}%>           
     </div>
