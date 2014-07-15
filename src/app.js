@@ -112,19 +112,23 @@ app.get('/channels_urls/:channelid/addform', channels_urls.addform);
 app.post('/channels_urls/:channelid', channels_urls.save);
 app.get('/channels_urls/:channelid/urls/:urlid/delete', channels_urls.delete);
 
+var port = process.env.PORT || CONFIG.get('node').port;
 
-var port = CONFIG.get('node').port || 1337;
-
-if (cluster.isMaster) {
-  for (var i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
-
-  cluster.on("exit", function(worker, code, signal) {
-    cluster.fork();
-  });
-} else {
-    http.createServer(app).listen(port, function(){
+http.createServer(app).listen(port, function() {
     console.log('CommandCenter server listening on port ' + port);
-    });
-}
+});
+
+
+//if (cluster.isMaster) {
+//  for (var i = 0; i < numCPUs; i++) {
+//    cluster.fork();
+//  }
+
+//  cluster.on("exit", function(worker, code, signal) {
+//    cluster.fork();
+//  });
+//} else {
+    //http.createServer(app).listen(port, function(){
+    //console.log('CommandCenter server listening on port ' + port);
+    //});
+//}
