@@ -31,7 +31,7 @@ var broadcasts = require('./controllers/broadcasts');
 var urls = require('./controllers/urls'); 
 var channels = require('./controllers/channels'); 
 var channels_urls = require('./controllers/channels_urls'); 
-
+var urls_custom = require('./controllers/urls_custom'); 
 // view engine setup
 app.engine('.html', require('ejs').__express);
 app.set('views', path.join(__dirname, 'views'));
@@ -64,7 +64,7 @@ if (app.get('env') === 'development') {
         });
     });
 }
-
+ 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
@@ -104,31 +104,18 @@ app.get('/urls/:id', urls.editform);
 app.post('/urls/:id', urls.save_edit);
 app.get('/urls/:id/delete', urls.delete);
 
-
-
 //Associate URLs to Channels Maintenance Operations
 app.get('/channels_urls/:channelid', channels_urls.list);
 app.get('/channels_urls/:channelid/addform', channels_urls.addform);
 app.post('/channels_urls/:channelid', channels_urls.save);
 app.get('/channels_urls/:channelid/urls/:urlid/delete', channels_urls.delete);
 
+//Associate a Custom URL with a Channel
+app.get('/urls_custom/:transactionId', urls_custom.view);
+app.post('/urls_custom', urls_custom.save);
+
 var port = process.env.PORT || CONFIG.get('node').port;
 
 http.createServer(app).listen(port, function() {
     console.log('CommandCenter server listening on port ' + port);
 });
-
-
-//if (cluster.isMaster) {
-//  for (var i = 0; i < numCPUs; i++) {
-//    cluster.fork();
-//  }
-
-//  cluster.on("exit", function(worker, code, signal) {
-//    cluster.fork();
-//  });
-//} else {
-    //http.createServer(app).listen(port, function(){
-    //console.log('CommandCenter server listening on port ' + port);
-    //});
-//}

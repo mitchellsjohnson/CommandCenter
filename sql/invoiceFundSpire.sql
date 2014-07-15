@@ -1,2 +1,0 @@
-select a.name as 'Account Name / Email', count(c.id) as 'Total Connections',date(a.date_created) as 'Date Created', a.end_of_subscription as 'End of Subscription',u.`last_updated`, ac.name as 'User Level', u.status as 'Status' from account a, access_group ac, user u left outer join connection c on c.user_id = u.id 
-where u.account_id = a.id and ac.id = u.access_group_id and (a.owner_id = 824 or a.id=824) GROUP BY a.id;

@@ -12,7 +12,7 @@ exports.list = function(req, res){
                   'updated_by FROM channels  ' +
                   'order by greatest(created, updated) desc ';
 
-        var query = connection.query(sql,function(err,rows)
+        connection.query(sql,function(err,rows)
         {
             
             if(err)
@@ -23,7 +23,7 @@ exports.list = function(req, res){
            
          });
          
-        // console.log(query.sql);
+ 
     });
   
 };
@@ -41,7 +41,7 @@ exports.editform = function(req, res){
         var sql = 'SELECT channel_id, channel_cd, length(channel_cd) channel_cd_length, description, ' +
                   ' length(description) description_length, active ' +
                   ' FROM channels where channel_id = ?'
-        var query = connection.query(sql,[id],function(err,rows)
+        connection.query(sql,[id],function(err,rows)
         {
             
             if(err)
@@ -51,8 +51,7 @@ exports.editform = function(req, res){
                 
            
          });
-         
-         //console.log(query.sql);
+        
     }); 
 };
 
@@ -72,7 +71,7 @@ exports.save = function(req,res){
         
         };
         var sql = 'INSERT INTO channels set ?';
-        var query = connection.query(sql,[data], function(err, rows)
+        connection.query(sql,[data], function(err, rows)
         {
   
           if (err)
@@ -82,8 +81,6 @@ exports.save = function(req,res){
           
         });
         
-        // console.log(query.sql); //get raw query
-    
     });
 };
 
@@ -105,7 +102,7 @@ exports.save_edit = function(req,res){
         
         };
         var sql = 'UPDATE channels set ?, updated=CURRENT_TIMESTAMP() WHERE channel_id = ?';
-        var query = connection.query(sql,[data,id], function(err, rows)
+	    connection.query(sql,[data,id], function(err, rows)
         {
   
           if (err)

@@ -17,8 +17,8 @@ exports.list = function(req, res){
                   'WHERE u.active = 1 and c.channel_id = ?' +
                   '        order by priority asc';
 
-        console.log(sql);
-        var query = connection.query(sql,[channel_id],function(err,rows)
+
+        connection.query(sql,[channel_id],function(err,rows)
         {
             
             if(err)
@@ -29,7 +29,7 @@ exports.list = function(req, res){
            
          });
          
-        // console.log(query.sql);
+      
     });
   
 };
@@ -42,18 +42,17 @@ exports.addform = function(req, res){
                   'WHERE u.active = 1 ' +
                   '        order by url_id desc';
 
-        var query = connection.query(sql,function(err,rows)
+        connection.query(sql,function(err,rows)
         {
             
             if(err)
                 console.log("Error Selecting : %s ",err );
-            console.log("SQL:  " + sql);
+      
             res.render('channels_urls/add_channel_url',{page_title:"Map URL to Channel - CommandCenter",data:rows});
                 
            
          });
-         
-        // console.log(query.sql);
+
     });
 
 
@@ -77,7 +76,7 @@ exports.save = function(req,res){
         
         };
         var sql = 'INSERT INTO channel_url_assoc set ?';
-        var query = connection.query(sql,data, function(err, rows)
+	    connection.query(sql,data, function(err, rows)
         {
   
           if (err)
@@ -87,8 +86,6 @@ exports.save = function(req,res){
           
         });
         
-        // console.log(query.sql); //get raw query
-    
     });
 };
 

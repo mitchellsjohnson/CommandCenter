@@ -3,7 +3,7 @@ var pool = null;
 
 exports.configure = function(config) {
     pool = mysql.createPool({  
-        connectionLimit : 10,
+        connectionLimit : 100,
         host     : config.host,
         user     : config.username,
         password : config.password,
@@ -17,5 +17,6 @@ exports.getConnection = function(callback) {
       return callback(err);
     }
     callback(err, conn);
+    conn.release();
   });
 };
